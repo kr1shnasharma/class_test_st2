@@ -1,0 +1,64 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+//NAME-KRISHNA SHARMA
+//ROLL NUMBER-2010990395
+//SET NUMBER-04
+//QUESTION 02
+#include <iostream>
+#include <unordered_set>
+using namespace std;
+// FUNCTION TO CHECK IF CONSECUTIVE ELEMENTS FORM AN ARRAY
+bool Consec(int arr[],int m){
+    // BASE CASE
+    if (m<=1) {
+        return true;
+    }
+    int min=arr[0],max=arr[0];
+    // COMPUTE THE MAXIMUM AND MINIMUM ELEMNT IN AN ARRAY
+    for (int i=1;i<m;i++)
+    {
+        if (arr[i]<min){
+         min=arr[i];
+        }
+         if (arr[i]>max){
+         max = arr[i];
+        }
+    }
+      // THE MAX & MIN ELEMENTS IN IT SHOULD BE EXACTLY N-1
+    if (max-min!=m-1){
+        return false;
+    }
+    // CREATING EMPTY SET
+    unordered_set<int> visited;
+    // TRAVERSING ARRAY
+    for (int i=0;i<m;i++)
+    {
+        // IF ELEMENT VISITED BEFORE RETURN-FALSE
+        if (visited.find(arr[i])!=visited.end()){
+            return false;
+        }
+        // IT IS TO MARK ELEMENT AS VISITED
+        visited.insert(arr[i]);
+    }
+    return true;
+}
+int main()
+{
+    //ENTERING THE SIZE OF ARRAY
+    int m;
+    cin>>m;
+    //DECLARING ARRAY AN PUTTING VALUES IN IT
+    int arr[m];
+    for(int i=0;i<m;i++){
+        cin>>arr[i];
+    }
+    Consec(arr,m)? cout<<"The array contains consecutive integers":
+    cout<<"The array does not contain consecutive integers";
+    return 0;
+}
